@@ -15,7 +15,7 @@ USER_ID INT,
 FOLLOWS_ID INT);
 
 LOAD DATA LOCAL INFILE "/Users/ethangilworth/Documents/DS4300/assignments/assignment_1/relational_twitter/data/follows.csv"
-INTO TABLE test_follows
+INTO TABLE follows
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;

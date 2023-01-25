@@ -9,3 +9,8 @@ class TwitterAPI:
         sql = "INSERT INTO tweets (user_id, tweet_text) VALUES (%s, %s)"
         val = (tweet.user_id, tweet.tweet_text)
         self.dbu.insert_one(sql, val)
+
+    def get_timeline(self, user_id):
+        sql = "SELECT TOP 10 tweet_text FROM tweets JOIN follows ON tweet.user_id = follows.user id WHERE user_id = %s ORDER BY tweet_ts DESC"
+        val = (user_id,)
+        self.dbu.select_all(sql, val)
