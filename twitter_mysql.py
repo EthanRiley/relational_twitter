@@ -6,6 +6,6 @@ class TwitterAPI:
         self.dbu = DBUtils(user, password, database, host)
 
     def post_tweet(self, tweet):
-        sql = "INSERT INTO test_tweets (user_id, tweet_text) VALUES (%s, %s)"
+        sql = "INSERT INTO tweets (user_id, tweet_text) VALUES (%s, %s)"
         val = (tweet.user_id, tweet.tweet_text)
         self.dbu.insert_one(sql, val)
