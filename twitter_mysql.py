@@ -11,6 +11,11 @@ class TwitterAPI:
         self.dbu.insert_one(sql, val)
 
     def get_timeline(self, user_id):
-        sql = "SELECT TOP 10 tweet_text FROM tweets JOIN follows ON tweet.user_id = follows.user id WHERE user_id = %s ORDER BY tweet_ts DESC"
+        sql = f"SELECT tweet_text FROM tweets JOIN follows ON tweets.user_id = follows.user_id WHERE tweets.user_id = {user_id} ORDER BY tweet_ts DESC LIMIT 10;"
         val = (user_id,)
-        self.dbu.select_all(sql, val)
+        self.dbu.execute(sql)
+
+    def get_random_user_id(self):
+        sql = "SELECT user_id FROM follows ORDER BY RAND() LIMIT 1;"
+        df = self.dbu.execute(sql)
+        return df.iloc[0][0]
